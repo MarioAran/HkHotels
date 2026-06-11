@@ -6,7 +6,7 @@ class AuthManager {
     constructor() {
         this.tokenKey = 'hk_hotel_token';
         this.userKey = 'hk_hotel_user';
-        this.basePath = '/HkHotels.Front';
+        this.basePath = '/HkHotels';
     }
 
     guardarToken(token, userData) {
