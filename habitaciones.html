@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitaciones - HK Hotels</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="navbar">
+            <a href="/" class="logo"><span class="logo-text">HK<span>Hotels</span></span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/">Inicio</a>
+                <a href="/habitaciones.html" class="active">Habitaciones</a>
+                <a href="/servicios.html">Servicios</a>
+                <a href="/galeria.html">Galería</a>
+                <a href="/contacto.html">Contacto</a>
+                <a href="/reservas/formulario.html" class="btn btn-gold btn-sm">Reservar</a>
+            </div>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </nav>
+    </header>
+
+    <section class="section" style="padding-top: 120px;">
+        <div class="section-title">
+            <span class="subtitle">Nuestras Habitaciones</span>
+            <h2>Todas las Habitaciones</h2>
+            <div class="section-divider"></div>
+            <p>Descubre nuestra selección de habitaciones premium</p>
+        </div>
+        <div class="rooms-grid" id="rooms-container"></div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <span class="logo-text" style="font-size: 24px;">HK<span>Hotels</span></span>
+                <p>Hotel de lujo en Ibiza.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Enlaces</h4>
+                <a href="/habitaciones.html">Habitaciones</a><br>
+                <a href="/servicios.html">Servicios</a><br>
+                <a href="/contacto.html">Contacto</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>📍 Av. del Mar, 123, Ibiza</p>
+                <p>📞 +34 971 123 456</p>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 HK Hotels.</p></div>
+    </footer>
+
+    <script src="/js/api.js"></script>
+    <script>
+        document.getElementById('hamburger').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        async function cargarHabitaciones() {
+            try {
+                const data = await api.getHabitaciones();
+                if (data.success) {
+                    document.getElementById('rooms-container').innerHTML = data.data.map(h => `
+                        <div class="room-card fade-in">
+                            <div class="room-card-image">
+                                <img src="${h.imagen_url}" alt="${h.nombre}" loading="lazy">
+                                <span class="room-card-badge">Desde $${h.precio_noche}</span>
+                            </div>
+                            <div class="room-card-body">
+                                <h3>${h.nombre}</h3>
+                                <div class="price">$${h.precio_noche} <span>/ noche</span></div>
+                                <p class="description">${h.descripcion}</p>
+                                <p>👥 Máx. ${h.max_personas} personas</p>
+                                <div class="amenities">${(h.amenities || []).map(a => `<span>${a}</span>`).join('')}</div>
+                                <div style="display:flex; gap:10px; margin-top:16px;">
+                                    <a href="/habitacion_detalle.html?id=${h.id}" class="btn btn-outline" style="flex:1">Detalle</a>
+                                    <a href="/reservas/formulario.html?habitacion=${h.id}" class="btn btn-gold" style="flex:1">Reservar</a>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                document.getElementById('rooms-container').innerHTML = '<p style="text-align:center;grid-column:1/-1;">Error al cargar habitaciones</p>';
+            }
+        }
+        cargarHabitaciones();
+    </script>
+</body>
+</html>

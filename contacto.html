@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Contacto - HK Hotels</title><link rel="stylesheet" href="/css/styles.css"></head>
+<body>
+<header class="header" id="header"><nav class="navbar">
+<a href="/" class="logo"><span class="logo-text">HK<span>Hotels</span></span></a>
+<div class="nav-links" id="navLinks">
+<a href="/">Inicio</a><a href="/habitaciones.html">Habitaciones</a><a href="/servicios.html">Servicios</a><a href="/galeria.html">Galería</a><a href="/contacto.html" class="active">Contacto</a><a href="/reservas/formulario.html" class="btn btn-gold btn-sm">Reservar</a>
+</div><div class="hamburger" id="hamburger"><span></span><span></span><span></span></div></nav></header>
+<section class="section" style="padding-top:120px;">
+<div class="section-title"><span class="subtitle">Contacto</span><h2>Estamos para Servirte</h2><div class="section-divider"></div><p>No dudes en contactarnos para cualquier consulta</p></div>
+<div style="max-width:800px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1fr 1fr;gap:40px;">
+<div style="background:white;border-radius:12px;padding:32px;box-shadow:0 4px 6px rgba(0,0,0,0.1);">
+<h3 style="margin-bottom:20px;color:var(--black-soft);">Información de Contacto</h3>
+<div style="margin-bottom:20px;"><p style="font-size:20px;">📍</p><p><strong>Dirección:</strong><br>Av. del Mar, 123<br>07800 Ibiza, España</p></div>
+<div style="margin-bottom:20px;"><p style="font-size:20px;">📞</p><p><strong>Teléfono:</strong><br>+34 971 123 456</p></div>
+<div style="margin-bottom:20px;"><p style="font-size:20px;">✉️</p><p><strong>Email:</strong><br>info@hkhotels.com</p></div>
+<div><p style="font-size:20px;">🕐</p><p><strong>Horario Recepción:</strong><br>24 horas / 7 días</p></div>
+</div>
+<div style="background:white;border-radius:12px;padding:32px;box-shadow:0 4px 6px rgba(0,0,0,0.1);">
+<h3 style="margin-bottom:20px;color:var(--black-soft);">Envíanos un Mensaje</h3>
+<form><div class="form-group" style="margin-bottom:16px;"><label>Nombre</label><input type="text" placeholder="Tu nombre" style="width:100%;padding:10px 14px;border:2px solid #eee;border-radius:8px;color:var(--gray-text);"></div>
+<div class="form-group" style="margin-bottom:16px;"><label>Email</label><input type="email" placeholder="tu@email.com" style="width:100%;padding:10px 14px;border:2px solid #eee;border-radius:8px;color:var(--gray-text);"></div>
+<div class="form-group" style="margin-bottom:16px;"><label>Mensaje</label><textarea rows="4" placeholder="Tu mensaje..." style="width:100%;padding:10px 14px;border:2px solid #eee;border-radius:8px;color:var(--gray-text);"></textarea></div>
+<button type="submit" class="btn btn-gold" style="width:100%;">Enviar Mensaje</button>
+</form></div></div></section>
+<footer class="footer"><div class="footer-content"><div class="footer-col"><span class="logo-text" style="font-size:24px;">HK<span>Hotels</span></span></div>
+<div class="footer-col"><h4>Contacto</h4><p>📞 +34 971 123 456</p></div></div><div class="footer-bottom"><p>&copy; 2026 HK Hotels.</p></div></footer>
+<script>
+document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('active'));
+window.addEventListener('scroll',()=>document.getElementById('header').classList.toggle('scrolled',window.scrollY>50));
+</script></body></html>

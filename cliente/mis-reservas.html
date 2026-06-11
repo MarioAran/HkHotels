@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Mis Reservas - HK Hotels</title><link rel="stylesheet" href="/css/styles.css">
+<style>.result-card{background:white;border-radius:12px;padding:24px;margin-top:20px;box-shadow:0 4px 6px rgba(0,0,0,0.1);}.result-card h3{color:var(--gold-primary)}.badge{padding:4px 12px;border-radius:50px;font-size:12px;font-weight:600}.badge-pendiente{background:#FFF3CD;color:#856404}.badge-confirmada{background:#D4EDDA;color:#155724}.badge-cancelada{background:#F8D7DA;color:#721C24}</style></head>
+<body>
+<header class="header" id="header"><nav class="navbar"><a href="/" class="logo"><span class="logo-text">HK<span>Hotels</span></span></a>
+<div class="nav-links" id="navLinks"><a href="/">Inicio</a><a href="/habitaciones.html">Habitaciones</a><a href="/reservas/formulario.html">Reservar</a><a href="/reservas/consultar.html">Consultar</a><a href="/cliente/mis-reservas.html">Mis Reservas</a></div>
+<div class="hamburger" id="hamburger"><span></span><span></span><span></span></div></nav></header>
+<section class="section" style="padding-top:120px;">
+<div class="section-title"><span class="subtitle">Reservas</span><h2>Mis Reservas</h2><div class="section-divider"></div><p>Ingresa tu email para ver tus reservas</p></div>
+<div style="max-width:600px;margin:0 auto;padding:0 20px;">
+<form id="form-buscar" style="background:white;padding:32px;border-radius:12px;box-shadow:0 4px 6px rgba(0,0,0,0.1);">
+<div class="form-group" style="margin-bottom:16px;"><label>Email</label><input type="email" id="email" required placeholder="tu@email.com" style="width:100%;padding:10px 14px;border:2px solid #eee;border-radius:8px;color:var(--gray-text);"></div>
+<button type="submit" class="btn btn-gold" style="width:100%;">Buscar Reservas</button></form>
+<div id="resultados"></div></div></section>
+<footer class="footer"><div class="footer-content"><div class="footer-col"><span class="logo-text" style="font-size:24px;">HK<span>Hotels</span></span></div>
+<div class="footer-col"><h4>Contacto</h4><p>📞 +34 971 123 456</p></div></div><div class="footer-bottom"><p>&copy; 2026 HK Hotels.</p></div></footer>
+<script src="/js/api.js"></script>
+<script>
+document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('active'));
+window.addEventListener('scroll',()=>document.getElementById('header').classList.toggle('scrolled',window.scrollY>50));
+document.getElementById('form-buscar').addEventListener('submit',async e=>{
+e.preventDefault();const email=document.getElementById('email').value;const c=document.getElementById('resultados');
+try{const r=await api.consultarReserva(email);if(r.success){c.innerHTML=r.data.map(r=>`
+<div class="result-card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;"><h3>Código: ${r.codigo_unico}</h3><span class="badge badge-${r.estado}">${r.estado}</span></div>
+<p>🏨 ${r.habitacion_nombre}</p><p>📅 ${r.fecha_checkin} → ${r.fecha_checkout}</p><p>👥 ${r.huespedes} huéspedes</p><p style="font-size:24px;font-weight:800;color:var(--gold-primary);">$${r.precio_total}</p></div>`).join('');}else{c.innerHTML='<div class="result-card"><p style="text-align:center;">No se encontraron reservas</p></div>';}
+}catch(e){c.innerHTML='<div class="result-card"><p style="text-align:center;color:red;">Error</p></div>';}});
+</script></body></html>

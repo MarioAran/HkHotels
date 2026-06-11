@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HK Hotels - Lujo y Confort en Ibiza</title>
+    <meta name="description" content="HK Hotels ofrece las mejores habitaciones de lujo en Ibiza. Reserva tu estancia con nosotros y disfruta de una experiencia inolvidable.">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <nav class="navbar">
+            <a href="/" class="logo">
+                <span class="logo-text">HK<span>Hotels</span></span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="/" class="active">Inicio</a>
+                <a href="/habitaciones.html">Habitaciones</a>
+                <a href="/servicios.html">Servicios</a>
+                <a href="/galeria.html">Galería</a>
+                <a href="/contacto.html">Contacto</a>
+                <a href="/reservas/formulario.html" class="btn btn-gold btn-sm">Reservar</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1920" 
+             alt="HK Hotels Lujo" class="hero-bg">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle fade-in">Bienvenido a HK Hotels</p>
+            <h1 class="hero-title fade-in fade-in-delay-1">
+                Donde el <span>Lujo</span> Encuentra el Mar
+            </h1>
+            <p class="hero-description fade-in fade-in-delay-2">
+                Descubre una experiencia única en Ibiza. Habitaciones premium, 
+                servicio excepcional y vistas inolvidables al Mediterráneo.
+            </p>
+            <div class="hero-buttons fade-in fade-in-delay-3">
+                <a href="/habitaciones.html" class="btn btn-gold">Ver Habitaciones</a>
+                <a href="/reservas/formulario.html" class="btn btn-outline">Reservar Ahora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- HABITACIONES DESTACADAS -->
+    <section class="section" id="habitaciones">
+        <div class="section-title">
+            <span class="subtitle">Nuestras Habitaciones</span>
+            <h2>Habitaciones Premium</h2>
+            <div class="section-divider"></div>
+            <p>Cada habitación está diseñada para ofrecerte el máximo confort y elegancia</p>
+        </div>
+        <div class="rooms-grid" id="rooms-container">
+            <!-- Las habitaciones se cargarán dinámicamente desde la API -->
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="/habitaciones.html" class="btn btn-outline">Ver Todas las Habitaciones</a>
+        </div>
+    </section>
+
+    <!-- SERVICIOS DESTACADOS -->
+    <section class="section" style="background: var(--white);" id="servicios">
+        <div class="section-title">
+            <span class="subtitle">Servicios Exclusivos</span>
+            <h2>Experiencias Únicas</h2>
+            <div class="section-divider"></div>
+            <p>Disfruta de nuestros servicios premium diseñados para tu bienestar</p>
+        </div>
+        <div class="services-grid" id="services-container">
+            <!-- Los servicios se cargarán dinámicamente desde la API -->
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="/servicios.html" class="btn btn-outline">Ver Todos los Servicios</a>
+        </div>
+    </section>
+
+    <!-- RESERVA RÁPIDA -->
+    <section class="quick-booking" id="reserva-rapida">
+        <div class="section-title">
+            <span class="subtitle">Reserva Online</span>
+            <h2>Reserva tu Habitación</h2>
+            <div class="section-divider"></div>
+        </div>
+        <form class="booking-form" id="form-busqueda-disponibilidad">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Fecha de Entrada</label>
+                    <input type="date" id="checkin" required>
+                </div>
+                <div class="form-group">
+                    <label>Fecha de Salida</label>
+                    <input type="date" id="checkout" required>
+                </div>
+                <div class="form-group">
+                    <label>Habitación</label>
+                    <select id="habitacion-select">
+                        <option value="">Todas las habitaciones</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button type="submit" class="btn btn-gold" style="width:100%">Buscar</button>
+                </div>
+            </div>
+        </form>
+        <div id="habitaciones-disponibles" class="rooms-grid" style="margin-top: 40px; max-width: 1200px; padding: 0 20px;">
+            <!-- Resultados de disponibilidad -->
+        </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section class="section" id="galeria">
+        <div class="section-title">
+            <span class="subtitle">Galería</span>
+            <h2>Momentos HK Hotels</h2>
+            <div class="section-divider"></div>
+            <p>Descubre la belleza de nuestro hotel a través de imágenes</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600" alt="Hotel Exterior" loading="lazy">
+                <div class="overlay"><h3>Hotel Exterior</h3></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1562778612-e1e0cda9915c?w=600" alt="Piscina" loading="lazy">
+                <div class="overlay"><h3>Piscina Infinity</h3></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600" alt="Restaurante" loading="lazy">
+                <div class="overlay"><h3>Restaurante Gourmet</h3></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600" alt="Spa" loading="lazy">
+                <div class="overlay"><h3>Spa & Wellness</h3></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600" alt="Lobby" loading="lazy">
+                <div class="overlay"><h3>Lobby Principal</h3></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=600" alt="Terraza" loading="lazy">
+                <div class="overlay"><h3>Terraza al Mar</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/34971123456" target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <span class="logo-text" style="font-size: 24px;">HK<span>Hotels</span></span>
+                <p>Hotel de lujo en Ibiza con las mejores vistas al Mediterráneo. 
+                   Tu experiencia única comienza aquí.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    <a href="#" aria-label="Twitter">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Enlaces Rápidos</h4>
+                <a href="/habitaciones.html">Habitaciones</a><br>
+                <a href="/servicios.html">Servicios</a><br>
+                <a href="/galeria.html">Galería</a><br>
+                <a href="/contacto.html">Contacto</a><br>
+                <a href="/politicas.html">Políticas</a>
+            </div>
+            <div class="footer-col">
+                <h4>Reservas</h4>
+                <a href="/reservas/formulario.html">Reservar Ahora</a><br>
+                <a href="/reservas/consultar.html">Consultar Reserva</a><br>
+                <a href="/cliente/mis-reservas.html">Mis Reservas</a><br>
+                <a href="/admin/login.html">Admin</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>📍 Av. del Mar, 123, Ibiza</p>
+                <p>📞 +34 971 123 456</p>
+                <p>✉️ info@hkhotels.com</p>
+                <p>🕐 Check-in: 15:00</p>
+                <p>🕐 Check-out: 12:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 HK Hotels. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/disponibilidad.js"></script>
+    <script>
+        // Menú hamburguesa
+        document.getElementById('hamburger').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+
+        // Header scroll
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Cargar habitaciones destacadas
+        async function cargarHabitaciones() {
+            try {
+                const data = await api.getHabitaciones();
+                if (data.success) {
+                    const container = document.getElementById('rooms-container');
+                    container.innerHTML = data.data.slice(0, 3).map(h => `
+                        <div class="room-card fade-in">
+                            <div class="room-card-image">
+                                <img src="${h.imagen_url}" alt="${h.nombre}" loading="lazy">
+                                <span class="room-card-badge">Desde $${h.precio_noche}</span>
+                            </div>
+                            <div class="room-card-body">
+                                <h3>${h.nombre}</h3>
+                                <div class="price">$${h.precio_noche} <span>/ noche</span></div>
+                                <p class="description">${h.descripcion}</p>
+                                <div class="amenities">
+                                    ${(h.amenities || []).slice(0, 4).map(a => `<span>${a}</span>`).join('')}
+                                </div>
+                                <a href="/habitacion_detalle.html?id=${h.id}" class="btn btn-outline" style="width:100%">Ver Detalle</a>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error cargando habitaciones:', error);
+                document.getElementById('rooms-container').innerHTML = `
+                    <div style="text-align:center; grid-column: 1/-1; padding: 40px;">
+                        <p>Error al cargar habitaciones. Asegúrate de que el backend esté funcionando.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Cargar servicios destacados
+        async function cargarServicios() {
+            try {
+                const data = await api.getServicios();
+                if (data.success) {
+                    const container = document.getElementById('services-container');
+                    const icons = ['spa', 'restaurant', 'car', 'food', 'boat'];
+                    container.innerHTML = data.data.map((s, i) => `
+                        <div class="service-card fade-in">
+                            <div class="service-icon">${getIcon(i)}</div>
+                            <h3>${s.nombre}</h3>
+                            <p>${s.descripcion}</p>
+                            ${s.precio_adicional > 0 ? `<span class="price-tag">+$${s.precio_adicional}</span>` : ''}
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error cargando servicios:', error);
+            }
+        }
+
+        function getIcon(index) {
+            const icons = ['💆', '🍽️', '🚗', '🍳', '⛵'];
+            return icons[index % icons.length];
+        }
+
+        // Cargar habitaciones en selector de disponibilidad
+        async function cargarSelectorHabitaciones() {
+            try {
+                const data = await api.getHabitaciones();
+                if (data.success) {
+                    const select = document.getElementById('habitacion-select');
+                    data.data.forEach(h => {
+                        const option = document.createElement('option');
+                        option.value = h.id;
+                        option.textContent = h.nombre;
+                        select.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                console.error('Error cargando selector:', error);
+            }
+        }
+
+        // Inicializar
+        cargarHabitaciones();
+        cargarServicios();
+        cargarSelectorHabitaciones();
+    </script>
+</body>
+</html>

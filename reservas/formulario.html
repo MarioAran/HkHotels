@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar - HK Hotels</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .form-section { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        .form-card { background: white; border-radius: 12px; padding: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .form-card h3 { color: var(--black-soft); margin-bottom: 24px; font-size: 24px; }
+        .form-card .total { background: var(--ivory); padding: 20px; border-radius: 8px; margin-top: 20px; }
+        .form-card .total h4 { color: var(--gold-primary); font-size: 32px; }
+        .success-message { text-align: center; padding: 60px 20px; }
+        .success-message .icon { font-size: 80px; margin-bottom: 20px; }
+        .success-message h2 { color: var(--black-soft); margin-bottom: 16px; }
+        .success-message .codigo { font-size: 28px; color: var(--gold-primary); font-weight: 800; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="navbar">
+            <a href="/" class="logo"><span class="logo-text">HK<span>Hotels</span></span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/">Inicio</a>
+                <a href="/habitaciones.html">Habitaciones</a>
+                <a href="/servicios.html">Servicios</a>
+                <a href="/reservas/formulario.html" class="active">Reservar</a>
+            </div>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </nav>
+    </header>
+
+    <section class="section" style="padding-top: 120px;">
+        <div class="section-title">
+            <span class="subtitle">Reserva Online</span>
+            <h2>Formulario de Reserva</h2>
+            <div class="section-divider"></div>
+        </div>
+        
+        <div class="form-section">
+            <div class="form-card" id="formulario-reserva">
+                <form id="form-reserva">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nombre Completo</label>
+                            <input type="text" id="nombre" required placeholder="Tu nombre" style="color:var(--gray-text);background:var(--gray-light);border:1px solid #ddd;">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="email" required placeholder="tu@email.com" style="color:var(--gray-text);background:var(--gray-light);border:1px solid #ddd;">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Teléfono</label>
+                            <input type="tel" id="telefono" placeholder="+34 600 000 000" style="color:var(--gray-text);background:var(--gray-light);border:1px solid #ddd;">
+                        </div>
+                        <div class="form-group">
+                            <label>Habitación</label>
+                            <select id="habitacion_id" required style="color:var(--gray-text);background:var(--gray-light);border:1px solid #ddd;">
+                                <option value="">Selecciona una habitación</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Fecha de Entrada</label>
+                            <input type="date" id="fecha_checkin" required style="color:var(--gray-text);background:var(--gray-light);border:1px solid #ddd;">
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha de Salida</label>
+                            <input type="date" id="fecha_checkout" required style="color:var(--gray-text);background:var(--gray-light);border:1px solid #ddd;">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Huéspedes</label>
+                            <input type="number" id="huespedes" min="1" max="10" value="2" required style="color:var(--gray-text);background:var(--gray-light);border:1px solid #ddd;">
+                        </div>
+                        <div class="form-group">
+                            <label>Servicios Extra</label>
+                            <div id="servicios-extra" style="display:flex;flex-wrap:wrap;gap:8px;">
+                                <!-- Se carga dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="total" id="resumen-precio">
+                        <p>Precio por noche: <span id="precio-noche">$0</span></p>
+                        <p>Noches: <span id="total-noches">0</span></p>
+                        <h4>Total: $<span id="precio-total">0</span></h4>
+                    </div>
+                    <button type="submit" class="btn btn-gold" style="width:100%;margin-top:24px;">
+                        Confirmar Reserva
+                    </button>
+                </form>
+                <div id="mensaje-exito" style="display:none;" class="success-message">
+                    <div class="icon">✅</div>
+                    <h2>¡Reserva Confirmada!</h2>
+                    <p>Tu código de reserva es:</p>
+                    <p class="codigo" id="codigo-reserva"></p>
+                    <p style="margin-top:16px;color:var(--gray-medium);">Te hemos enviado un email con los detalles.</p>
+                    <a href="/" class="btn btn-gold" style="margin-top:24px;">Volver al Inicio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" style="margin-top:60px;">
+        <div class="footer-content">
+            <div class="footer-col">
+                <span class="logo-text" style="font-size:24px;">HK<span>Hotels</span></span>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>📞 +34 971 123 456</p>
+                <p>✉️ info@hkhotels.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 HK Hotels.</p></div>
+    </footer>
+
+    <script src="/js/api.js"></script>
+    <script>
+        document.getElementById('hamburger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('active'));
+        window.addEventListener('scroll', () => document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50));
+
+        let precioPorNoche = 0;
+        let serviciosExtra = [];
+
+        async function init() {
+            // Cargar habitaciones
+            const params = new URLSearchParams(window.location.search);
+            const habId = params.get('habitacion');
+            
+            try {
+                const data = await api.getHabitaciones();
+                if (data.success) {
+                    const select = document.getElementById('habitacion_id');
+                    data.data.forEach(h => {
+                        const opt = document.createElement('option');
+                        opt.value = h.id;
+                        opt.textContent = `${h.nombre} - $${h.precio_noche}/noche`;
+                        select.appendChild(opt);
+                    });
+                    if (habId) select.value = habId;
+                    select.dispatchEvent(new Event('change'));
+                }
+            } catch (e) { console.error(e); }
+
+            // Cargar servicios extra
+            try {
+                const data = await api.getServicios();
+                if (data.success) {
+                    const container = document.getElementById('servicios-extra');
+                    data.data.forEach(s => {
+                        const label = document.createElement('label');
+                        label.style.cssText = 'display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer;padding:6px 12px;background:var(--gray-light);border-radius:8px;';
+                        label.innerHTML = `<input type="checkbox" value="${s.id}" data-precio="${s.precio_adicional}"> ${s.nombre} ${s.precio_adicional > 0 ? `(+$${s.precio_adicional})` : ''}`;
+                        container.appendChild(label);
+                    });
+                }
+            } catch (e) { console.error(e); }
+        }
+
+        document.getElementById('habitacion_id').addEventListener('change', function() {
+            const selected = this.options[this.selectedIndex];
+            if (selected.value) {
+                const match = selected.text.match(/\$(\d+)/);
+                precioPorNoche = match ? parseInt(match[1]) : 0;
+            } else {
+                precioPorNoche = 0;
+            }
+            calcularPrecio();
+        });
+
+        document.querySelectorAll('#fecha_checkin, #fecha_checkout').forEach(el => {
+            el.addEventListener('change', calcularPrecio);
+        });
+
+        document.getElementById('servicios-extra').addEventListener('change', function(e) {
+            if (e.target.type === 'checkbox') {
+                calcularPrecio();
+            }
+        });
+
+        function calcularPrecio() {
+            const checkin = new Date(document.getElementById('fecha_checkin').value);
+            const checkout = new Date(document.getElementById('fecha_checkout').value);
+            
+            if (checkin && checkout && checkout > checkin) {
+                const noches = Math.round((checkout - checkin) / (1000*60*60*24));
+                document.getElementById('total-noches').textContent = noches;
+                
+                let total = precioPorNoche * noches;
+                
+                // Sumar servicios extra
+                document.querySelectorAll('#servicios-extra input:checked').forEach(cb => {
+                    total += parseFloat(cb.dataset.precio || 0);
+                });
+                
+                document.getElementById('precio-noche').textContent = `$${precioPorNoche}`;
+                document.getElementById('precio-total').textContent = total.toFixed(2);
+            }
+        }
+
+        document.getElementById('form-reserva').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const servicios = [];
+            document.querySelectorAll('#servicios-extra input:checked').forEach(cb => servicios.push(parseInt(cb.value)));
+            
+            const datos = {
+                nombre_cliente: document.getElementById('nombre').value,
+                email: document.getElementById('email').value,
+                telefono: document.getElementById('telefono').value,
+                habitacion_id: parseInt(document.getElementById('habitacion_id').value),
+                fecha_checkin: document.getElementById('fecha_checkin').value,
+                fecha_checkout: document.getElementById('fecha_checkout').value,
+                huespedes: parseInt(document.getElementById('huespedes').value),
+                servicios_extra: servicios
+            };
+
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.textContent = 'Procesando...';
+            btn.disabled = true;
+
+            try {
+                const result = await api.crearReserva(datos);
+                if (result.success) {
+                    document.getElementById('form-reserva').style.display = 'none';
+                    document.getElementById('codigo-reserva').textContent = result.data.codigo;
+                    document.getElementById('mensaje-exito').style.display = 'block';
+                } else {
+                    alert('Error: ' + result.message);
+                }
+            } catch (error) {
+                alert('Error al crear la reserva: ' + error.message);
+            } finally {
+                btn.textContent = 'Confirmar Reserva';
+                btn.disabled = false;
+            }
+        });
+
+        init();
+    </script>
+</body>
+</html>

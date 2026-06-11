@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Mi Perfil - HK Hotels</title><link rel="stylesheet" href="/css/styles.css"></head>
+<body>
+<header class="header" id="header"><nav class="navbar"><a href="/" class="logo"><span class="logo-text">HK<span>Hotels</span></span></a>
+<div class="nav-links" id="navLinks"><a href="/">Inicio</a><a href="/habitaciones.html">Habitaciones</a><a href="/reservas/formulario.html">Reservar</a><a href="/cliente/mis-reservas.html">Mis Reservas</a></div>
+<div class="hamburger" id="hamburger"><span></span><span></span><span></span></div></nav></header>
+<section class="section" style="padding-top:120px;">
+<div class="section-title"><span class="subtitle">Cliente</span><h2>Mi Perfil</h2><div class="section-divider"></div></div>
+<div style="max-width:600px;margin:0 auto;padding:0 20px;">
+<div style="background:white;border-radius:12px;padding:32px;box-shadow:0 4px 6px rgba(0,0,0,0.1);text-align:center;">
+<p style="font-size:80px;margin-bottom:16px;">👤</p>
+<h3 style="margin-bottom:24px;">Portal del Cliente</h3>
+<p style="color:var(--gray-medium);margin-bottom:24px;">Accede a tus reservas registrando tu email.</p>
+<a href="/cliente/mis-reservas.html" class="btn btn-gold" style="width:100%;">Ver Mis Reservas</a>
+<a href="/reservas/consultar.html" class="btn btn-outline" style="width:100%;margin-top:12px;">Consultar Reserva</a>
+</div></div></section>
+<footer class="footer"><div class="footer-content"><div class="footer-col"><span class="logo-text" style="font-size:24px;">HK<span>Hotels</span></span></div>
+<div class="footer-col"><h4>Contacto</h4><p>📞 +34 971 123 456</p></div></div><div class="footer-bottom"><p>&copy; 2026 HK Hotels.</p></div></footer>
+<script>
+document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('active'));
+window.addEventListener('scroll',()=>document.getElementById('header').classList.toggle('scrolled',window.scrollY>50));
+</script></body></html>

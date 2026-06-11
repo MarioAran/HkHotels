@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Detalle Habitación - HK Hotels</title><link rel="stylesheet" href="/css/styles.css"></head>
+<body>
+<header class="header" id="header"><nav class="navbar">
+<a href="/" class="logo"><span class="logo-text">HK<span>Hotels</span></span></a>
+<div class="nav-links" id="navLinks">
+<a href="/">Inicio</a><a href="/habitaciones.html">Habitaciones</a><a href="/servicios.html">Servicios</a><a href="/galeria.html">Galería</a><a href="/reservas/formulario.html" class="btn btn-gold btn-sm">Reservar</a>
+</div><div class="hamburger" id="hamburger"><span></span><span></span><span></span></div></nav></header>
+
+<section class="section" style="padding-top:120px;">
+<div style="max-width:1000px;margin:0 auto;padding:0 20px;" id="detalle-container"></div>
+</section>
+
+<footer class="footer"><div class="footer-content"><div class="footer-col"><span class="logo-text" style="font-size:24px;">HK<span>Hotels</span></span></div>
+<div class="footer-col"><h4>Contacto</h4><p>📞 +34 971 123 456</p></div></div>
+<div class="footer-bottom"><p>&copy; 2026 HK Hotels.</p></div></footer>
+
+<script src="/js/api.js"></script>
+<script>
+document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('active'));
+window.addEventListener('scroll',()=>document.getElementById('header').classList.toggle('scrolled',window.scrollY>50));
+const id=new URLSearchParams(window.location.search).get('id');
+
+async function cargar(){try{
+const data=await api.getHabitacion(id);
+if(data.success){const h=data.data;
+document.getElementById('detalle-container').innerHTML=`
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;background:white;border-radius:12px;padding:32px;box-shadow:0 4px 6px rgba(0,0,0,0.1);">
+<div><img src="${h.imagen_url}" alt="${h.nombre}" style="width:100%;border-radius:12px;height:400px;object-fit:cover;"></div>
+<div><h1 style="font-size:32px;color:var(--black-soft);margin-bottom:8px;">${h.nombre}</h1>
+<div style="font-size:36px;font-weight:800;color:var(--gold-primary);margin-bottom:16px;">$${h.precio_noche}<span style="font-size:16px;font-weight:400;color:var(--gray-medium);">/noche</span></div>
+<p style="margin-bottom:16px;line-height:1.8;">${h.descripcion}</p>
+<p style="margin-bottom:16px;">👥 Máx. ${h.max_personas} personas</p>
+<div style="margin-bottom:24px;"><h3 style="margin-bottom:8px;">Amenities</h3><div style="display:flex;flex-wrap:wrap;gap:8px;">${(h.amenities||[]).map(a=>'<span style="background:var(--gray-light);padding:6px 14px;border-radius:50px;font-size:13px;">'+a+'</span>').join('')}</div></div>
+<a href="/reservas/formulario.html?habitacion=${h.id}" class="btn btn-gold" style="width:100%;padding:16px;font-size:18px;">Reservar Ahora</a>
+</div></div>`;}
+}catch(e){document.getElementById('detalle-container').innerHTML='<p style="text-align:center;color:red;">Error al cargar</p>';}}
+cargar();
+</script></body></html>
