@@ -1,117 +1,36 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin - HK Hotels</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <style>
-        .admin-layout { display: flex; min-height: 100vh; }
-        .admin-sidebar { width: 260px; background: var(--black-soft); padding: 24px; position: fixed; top: 0; left: 0; height: 100vh; }
-        .admin-sidebar .logo-text { font-size: 22px; display: block; margin-bottom: 32px; }
-        .admin-sidebar nav a { display: block; color: rgba(255,255,255,0.7); padding: 12px 16px; border-radius: 8px; margin-bottom: 4px; font-size: 14px; transition: var(--transition); }
-        .admin-sidebar nav a:hover, .admin-sidebar nav a.active { background: rgba(198,164,63,0.15); color: var(--gold-primary); }
-        .admin-main { margin-left: 260px; flex: 1; padding: 32px; background: var(--ivory); min-height: 100vh; }
-        .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
-        .admin-header h1 { font-size: 24px; color: var(--black-soft); }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; }
-        .stat-card { background: white; border-radius: 12px; padding: 24px; box-shadow: var(--shadow-sm); }
-        .stat-card h3 { font-size: 14px; color: var(--gray-medium); font-weight: 500; margin-bottom: 8px; }
-        .stat-card .number { font-size: 32px; font-weight: 800; color: var(--gold-primary); }
-        .admin-table { background: white; border-radius: 12px; padding: 24px; box-shadow: var(--shadow-sm); overflow-x: auto; }
-        .admin-table table { width: 100%; border-collapse: collapse; }
-        .admin-table th { text-align: left; padding: 12px; font-size: 12px; text-transform: uppercase; color: var(--gray-medium); border-bottom: 2px solid var(--gray-light); }
-        .admin-table td { padding: 12px; border-bottom: 1px solid var(--gray-light); font-size: 14px; }
-        .admin-table .badge { padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: 600; }
-    </style>
-</head>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><base href="/HkHotels.Front/"><title>Dashboard Admin - HK Hotels</title><link rel="stylesheet" href="css/styles.css">
+<style>.admin-layout{display:flex;min-height:100vh}.admin-sidebar{width:260px;background:var(--black-soft);padding:24px;position:fixed;top:0;left:0;height:100vh}.admin-sidebar .logo-text{font-size:22px;display:block;margin-bottom:32px}.admin-sidebar nav a{display:block;color:rgba(255,255,255,0.7);padding:12px 16px;border-radius:8px;margin-bottom:4px;font-size:14px}.admin-sidebar nav a:hover,.admin-sidebar nav a.active{background:rgba(198,164,63,0.15);color:var(--gold-primary)}.admin-main{margin-left:260px;flex:1;padding:32px;background:var(--ivory);min-height:100vh}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:40px}.stat-card{background:white;border-radius:12px;padding:24px;box-shadow:var(--shadow-sm)}.stat-card h3{font-size:14px;color:var(--gray-medium);font-weight:500;margin-bottom:8px}.stat-card .number{font-size:32px;font-weight:800;color:var(--gold-primary)}</style></head>
 <body>
-    <div class="admin-layout">
-        <aside class="admin-sidebar">
-            <span class="logo-text">HK<span>Hotels</span></span>
-            <nav>
-                <a href="/admin/dashboard.html" class="active">📊 Dashboard</a>
-                <a href="/admin/habitaciones/listar.html">🏨 Habitaciones</a>
-                <a href="/admin/reservas/listar.html">📋 Reservas</a>
-                <a href="/admin/servicios/listar.html">🛎️ Servicios</a>
-                <a href="/" style="margin-top:32px;border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;">← Ver Sitio</a>
-                <a href="#" id="btn-cerrar-sesion" style="color:#dc3545;">🚪 Cerrar Sesión</a>
-            </nav>
-        </aside>
-        <main class="admin-main">
-            <div class="admin-header">
-                <h1>Dashboard</h1>
-                <span style="color:var(--gray-medium);font-size:14px;" id="user-info"></span>
-            </div>
-            <div class="stats-grid" id="stats-container">
-                <div class="stat-card"><h3>Reservas Totales</h3><div class="number" id="stat-reservas">-</div></div>
-                <div class="stat-card"><h3>Habitaciones Activas</h3><div class="number" id="stat-habitaciones">-</div></div>
-                <div class="stat-card"><h3>Ingresos Totales</h3><div class="number" id="stat-ingresos">-</div></div>
-                <div class="stat-card"><h3>Reservas Pendientes</h3><div class="number" id="stat-pendientes">-</div></div>
-            </div>
-            <div class="admin-table">
-                <h3 style="margin-bottom:16px;">Últimas Reservas</h3>
-                <table>
-                    <thead>
-                        <tr><th>Código</th><th>Cliente</th><th>Habitación</th><th>Fechas</th><th>Total</th><th>Estado</th></tr>
-                    </thead>
-                    <tbody id="reservas-table-body">
-                        <tr><td colspan="6" style="text-align:center;color:var(--gray-medium);">Cargando...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </main>
-    </div>
-
-    <script src="/js/api.js"></script>
-    <script>
-        const user = JSON.parse(localStorage.getItem('hk_hotel_user') || '{}');
-        const token = localStorage.getItem('hk_hotel_token');
-        
-        if (!token) window.location.href = '/admin/login.html';
-        
-        document.getElementById('user-info').textContent = `👋 ${user.nombre_completo || user.username}`;
-        
-        document.getElementById('btn-cerrar-sesion').addEventListener('click', (e) => {
-            e.preventDefault();
-            localStorage.removeItem('hk_hotel_token');
-            localStorage.removeItem('hk_hotel_user');
-            window.location.href = '/admin/login.html';
-        });
-
-        async function cargarDashboard() {
-            try {
-                const [stats, reservas] = await Promise.all([
-                    api.getEstadisticas(token),
-                    api.getReservasAdmin(token)
-                ]);
-                
-                if (stats.success) {
-                    document.getElementById('stat-reservas').textContent = stats.data.total_reservas;
-                    document.getElementById('stat-habitaciones').textContent = stats.data.habitaciones_activas;
-                    document.getElementById('stat-ingresos').textContent = `$${stats.data.ingresos_totales}`;
-                    document.getElementById('stat-pendientes').textContent = stats.data.reservas_por_estado?.pendiente || 0;
-                }
-                
-                if (reservas.success) {
-                    const estados = { pendiente: 'badge-pendiente', confirmada: 'badge-confirmada', cancelada: 'badge-cancelada', completada: 'badge-completada' };
-                    document.getElementById('reservas-table-body').innerHTML = reservas.data.slice(0, 10).map(r => `
-                        <tr>
-                            <td><strong>${r.codigo_unico}</strong></td>
-                            <td>${r.nombre_cliente}</td>
-                            <td>${r.habitacion_nombre}</td>
-                            <td>${r.fecha_checkin} → ${r.fecha_checkout}</td>
-                            <td>$${r.precio_total}</td>
-                            <td><span class="badge ${estados[r.estado] || ''}">${r.estado}</span></td>
-                        </tr>
-                    `).join('');
-                }
-            } catch (e) {
-                document.getElementById('reservas-table-body').innerHTML = '<tr><td colspan="6" style="text-align:center;color:red;">Error al cargar datos</td></tr>';
-            }
-        }
-        
-        cargarDashboard();
-    </script>
-</body>
-</html>
+<div class="admin-layout">
+<aside class="admin-sidebar">
+<span class="logo-text">HK<span>Hotels</span></span>
+<nav>
+<a href="dashboard.html" class="active">📊 Dashboard</a>
+<a href="habitaciones/listar.html">🏨 Habitaciones</a>
+<a href="reservas/listar.html">📋 Reservas</a>
+<a href="servicios/listar.html">🛎️ Servicios</a>
+<a href=".." style="margin-top:32px;border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;">← Ver Sitio</a>
+<a href="#" id="btn-cerrar-sesion" style="color:#dc3545;">🚪 Cerrar Sesión</a>
+</nav></aside>
+<main class="admin-main">
+<div class="admin-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;">
+<h1 style="font-size:24px;color:var(--black-soft);">Dashboard</h1><span style="color:var(--gray-medium);font-size:14px;" id="user-info"></span></div>
+<div class="stats-grid">
+<div class="stat-card"><h3>Reservas Totales</h3><div class="number" id="stat-reservas">-</div></div>
+<div class="stat-card"><h3>Habitaciones Activas</h3><div class="number" id="stat-habitaciones">-</div></div>
+<div class="stat-card"><h3>Ingresos Totales</h3><div class="number" id="stat-ingresos">-</div></div>
+<div class="stat-card"><h3>Pendientes</h3><div class="number" id="stat-pendientes">-</div></div></div>
+<div style="background:white;border-radius:12px;padding:24px;box-shadow:var(--shadow-sm);overflow-x:auto;">
+<h3 style="margin-bottom:16px;">Últimas Reservas</h3><table style="width:100%;border-collapse:collapse;">
+<thead><tr><th>Código</th><th>Cliente</th><th>Habitación</th><th>Fechas</th><th>Total</th><th>Estado</th></tr></thead>
+<tbody id="reservas-table-body"><tr><td colspan="6" style="text-align:center;color:var(--gray-medium);">Cargando...</td></tr></tbody></table></div></main></div>
+<script src="../js/api.js"></script>
+<script>
+const user=JSON.parse(localStorage.getItem('hk_hotel_user')||'{}');const token=localStorage.getItem('hk_hotel_token');if(!token)window.location.href='login.html';
+document.getElementById('user-info').textContent='👋 '+(user.nombre_completo||user.username);
+document.getElementById('btn-cerrar-sesion').addEventListener('click',e=>{e.preventDefault();localStorage.removeItem('hk_hotel_token');localStorage.removeItem('hk_hotel_user');window.location.href='login.html';});
+async function cargar(){try{const[stats,reservas]=await Promise.all([api.getEstadisticas(token),api.getReservasAdmin(token)]);if(stats.success){document.getElementById('stat-reservas').textContent=stats.data.total_reservas;document.getElementById('stat-habitaciones').textContent=stats.data.habitaciones_activas;document.getElementById('stat-ingresos').textContent='$'+stats.data.ingresos_totales;document.getElementById('stat-pendientes').textContent=stats.data.reservas_por_estado?.pendiente||0}
+if(reservas.success){const e={pendiente:'badge-pendiente',confirmada:'badge-confirmada',cancelada:'badge-cancelada',completada:'badge-completada'};document.getElementById('reservas-table-body').innerHTML=reservas.data.slice(0,10).map(r=>`<tr><td><strong>${r.codigo_unico}</strong></td><td>${r.nombre_cliente}</td><td>${r.habitacion_nombre}</td><td>${r.fecha_checkin}→${r.fecha_checkout}</td><td>$${r.precio_total}</td><td><span class="badge ${e[r.estado]||''}">${r.estado}</span></td></tr>`).join('');}
+}catch(e){document.getElementById('reservas-table-body').innerHTML='<tr><td colspan="6" style="text-align:center;color:red;">Error</td></tr>';}}
+cargar();
+</script></body></html>

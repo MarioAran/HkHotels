@@ -6,6 +6,7 @@ class AuthManager {
     constructor() {
         this.tokenKey = 'hk_hotel_token';
         this.userKey = 'hk_hotel_user';
+        this.basePath = '/HkHotels.Front';
     }
 
     guardarToken(token, userData) {
@@ -29,7 +30,7 @@ class AuthManager {
     cerrarSesion() {
         localStorage.removeItem(this.tokenKey);
         localStorage.removeItem(this.userKey);
-        window.location.href = '/admin/login.html';
+        window.location.href = `${this.basePath}/admin/login.html`;
     }
 
     async login(username, password) {
@@ -52,6 +53,6 @@ const auth = new AuthManager();
 if (window.location.pathname.includes('/admin/') && 
     !window.location.pathname.includes('/admin/login.html')) {
     if (!auth.estaAutenticado()) {
-        window.location.href = '/admin/login.html';
+        window.location.href = auth.basePath + '/admin/login.html';
     }
 }

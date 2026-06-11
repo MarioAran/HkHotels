@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/HkHotels.Front/">
     <title>Habitaciones - HK Hotels</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header class="header" id="header">
         <nav class="navbar">
-            <a href="/" class="logo"><span class="logo-text">HK<span>Hotels</span></span></a>
+            <a href="." class="logo"><span class="logo-text">HK<span>Hotels</span></span></a>
             <div class="nav-links" id="navLinks">
-                <a href="/">Inicio</a>
-                <a href="/habitaciones.html" class="active">Habitaciones</a>
-                <a href="/servicios.html">Servicios</a>
-                <a href="/galeria.html">Galería</a>
-                <a href="/contacto.html">Contacto</a>
-                <a href="/reservas/formulario.html" class="btn btn-gold btn-sm">Reservar</a>
+                <a href=".">Inicio</a>
+                <a href="habitaciones.html" class="active">Habitaciones</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="galeria.html">Galería</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="reservas/formulario.html" class="btn btn-gold btn-sm">Reservar</a>
             </div>
             <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
         </nav>
@@ -40,9 +41,9 @@
             </div>
             <div class="footer-col">
                 <h4>Enlaces</h4>
-                <a href="/habitaciones.html">Habitaciones</a><br>
-                <a href="/servicios.html">Servicios</a><br>
-                <a href="/contacto.html">Contacto</a>
+                <a href="habitaciones.html">Habitaciones</a><br>
+                <a href="servicios.html">Servicios</a><br>
+                <a href="contacto.html">Contacto</a>
             </div>
             <div class="footer-col">
                 <h4>Contacto</h4>
@@ -53,7 +54,7 @@
         <div class="footer-bottom"><p>&copy; 2026 HK Hotels.</p></div>
     </footer>
 
-    <script src="/js/api.js"></script>
+    <script src="js/api.js"></script>
     <script>
         document.getElementById('hamburger').addEventListener('click', () => {
             document.getElementById('navLinks').classList.toggle('active');
@@ -79,8 +80,8 @@
                                 <p>👥 Máx. ${h.max_personas} personas</p>
                                 <div class="amenities">${(h.amenities || []).map(a => `<span>${a}</span>`).join('')}</div>
                                 <div style="display:flex; gap:10px; margin-top:16px;">
-                                    <a href="/habitacion_detalle.html?id=${h.id}" class="btn btn-outline" style="flex:1">Detalle</a>
-                                    <a href="/reservas/formulario.html?habitacion=${h.id}" class="btn btn-gold" style="flex:1">Reservar</a>
+                                    <a href="habitacion_detalle.html?id=${h.id}" class="btn btn-outline" style="flex:1">Detalle</a>
+                                    <a href="reservas/formulario.html?habitacion=${h.id}" class="btn btn-gold" style="flex:1">Reservar</a>
                                 </div>
                             </div>
                         </div>

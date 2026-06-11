@@ -1,76 +1,17 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login - HK Hotels</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <style>
-        .login-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--black-soft), #2A2A2A); }
-        .login-card { background: white; border-radius: 16px; padding: 48px 40px; width: 100%; max-width: 420px; margin: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-        .login-card h1 { text-align: center; font-size: 28px; color: var(--black-soft); margin-bottom: 8px; }
-        .login-card .subtitle { text-align: center; color: var(--gray-medium); margin-bottom: 32px; font-size: 14px; }
-        .login-card .form-group { margin-bottom: 20px; }
-        .login-card .form-group label { color: var(--gray-text); font-size: 13px; font-weight: 600; }
-        .login-card .form-group input { width: 100%; padding: 12px 16px; border: 2px solid #eee; border-radius: 8px; font-size: 15px; transition: var(--transition); color: var(--gray-text); background: var(--white); }
-        .login-card .form-group input:focus { border-color: var(--gold-primary); outline: none; }
-        .login-card .error-msg { color: #dc3545; font-size: 13px; text-align: center; margin-top: 12px; display: none; }
-        .login-card .logo-text { display: block; text-align: center; margin-bottom: 24px; font-size: 32px; }
-    </style>
-</head>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><base href="/HkHotels.Front/"><title>Admin Login - HK Hotels</title><link rel="stylesheet" href="css/styles.css">
+<style>.login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--black-soft),#2A2A2A)}.login-card{background:white;border-radius:16px;padding:48px 40px;width:100%;max-width:420px;margin:20px;box-shadow:0 20px 40px rgba(0,0,0,0.3)}.login-card h1{text-align:center;font-size:28px;color:var(--black-soft);margin-bottom:8px}.login-card .subtitle{text-align:center;color:var(--gray-medium);margin-bottom:32px;font-size:14px}.login-card .form-group{margin-bottom:20px}.login-card .form-group label{color:var(--gray-text);font-size:13px;font-weight:600}.login-card .form-group input{width:100%;padding:12px 16px;border:2px solid #eee;border-radius:8px;font-size:15px;color:var(--gray-text)}.login-card .form-group input:focus{border-color:var(--gold-primary);outline:none}.login-card .error-msg{color:#dc3545;font-size:13px;text-align:center;margin-top:12px;display:none}</style></head>
 <body>
-    <div class="login-page">
-        <div class="login-card">
-            <span class="logo-text">HK<span style="color:var(--gray-text);">Hotels</span></span>
-            <h1>Iniciar Sesión</h1>
-            <p class="subtitle">Panel de Administración</p>
-            <form id="login-form">
-                <div class="form-group">
-                    <label>Usuario</label>
-                    <input type="text" id="username" placeholder="admin" required>
-                </div>
-                <div class="form-group">
-                    <label>Contraseña</label>
-                    <input type="password" id="password" placeholder="••••••••" required>
-                </div>
-                <button type="submit" class="btn btn-gold" style="width:100%;">Ingresar</button>
-                <p class="error-msg" id="error-msg">Credenciales inválidas</p>
-            </form>
-            <p style="text-align:center;margin-top:24px;font-size:13px;color:var(--gray-medium);">
-                <a href="/" style="color:var(--gold-primary);">← Volver al inicio</a>
-            </p>
-        </div>
-    </div>
-    <script src="/js/api.js"></script>
-    <script>
-        document.getElementById('login-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const btn = e.target.querySelector('button');
-            
-            btn.textContent = 'Ingresando...';
-            btn.disabled = true;
-            document.getElementById('error-msg').style.display = 'none';
-            
-            try {
-                const result = await api.login(username, password);
-                if (result.success) {
-                    localStorage.setItem('hk_hotel_token', result.data.token);
-                    localStorage.setItem('hk_hotel_user', JSON.stringify(result.data.usuario));
-                    window.location.href = '/admin/dashboard.html';
-                } else {
-                    document.getElementById('error-msg').textContent = result.message || 'Credenciales inválidas';
-                    document.getElementById('error-msg').style.display = 'block';
-                }
-            } catch (error) {
-                document.getElementById('error-msg').textContent = 'Error de conexión con el servidor';
-                document.getElementById('error-msg').style.display = 'block';
-            } finally {
-                btn.textContent = 'Ingresar';
-                btn.disabled = false;
-            }
-        });
-    </script>
-</body>
-</html>
+<div class="login-page"><div class="login-card">
+<span class="logo-text" style="display:block;text-align:center;margin-bottom:24px;font-size:32px;">HK<span style="color:var(--gray-text);">Hotels</span></span>
+<h1>Iniciar Sesión</h1><p class="subtitle">Panel de Administración</p>
+<form id="login-form">
+<div class="form-group"><label>Usuario</label><input type="text" id="username" placeholder="admin" required></div>
+<div class="form-group"><label>Contraseña</label><input type="password" id="password" placeholder="••••••••" required></div>
+<button type="submit" class="btn btn-gold" style="width:100%;">Ingresar</button>
+<p class="error-msg" id="error-msg">Credenciales inválidas</p></form>
+<p style="text-align:center;margin-top:24px;font-size:13px;color:var(--gray-medium);"><a href=".." style="color:var(--gold-primary);">← Volver al inicio</a></p>
+</div></div>
+<script src="../js/api.js"></script>
+<script>
+document.getElementById('login-form').addEventListener('submit',async e=>{e.preventDefault();const un=document.getElementById('username').value;const pw=document.getElementById('password').value;const btn=e.target.querySelector('button');btn.textContent='Ingresando...';btn.disabled=true;document.getElementById('error-msg').style.display='none';try{const r=await api.login(un,pw);if(r.success){localStorage.setItem('hk_hotel_token',r.data.token);localStorage.setItem('hk_hotel_user',JSON.stringify(r.data.usuario));window.location.href='dashboard.html'}else{document.getElementById('error-msg').textContent=r.message||'Credenciales inválidas';document.getElementById('error-msg').style.display='block'}}catch(error){document.getElementById('error-msg').textContent='Error de conexión';document.getElementById('error-msg').style.display='block'}finally{btn.textContent='Ingresar';btn.disabled=false}});
+</script></body></html>

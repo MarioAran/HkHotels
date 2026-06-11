@@ -1,24 +1,14 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Confirmación - HK Hotels</title><link rel="stylesheet" href="/css/styles.css">
-<style>.success-page{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 20px;}.success-card{background:white;border-radius:16px;padding:60px 40px;max-width:500px;box-shadow:0 20px 40px rgba(0,0,0,0.1);}.success-card .icon{font-size:80px;margin-bottom:24px;}.success-card h1{color:var(--black-soft);margin-bottom:12px;}.success-card .codigo{font-size:32px;font-weight:800;color:var(--gold-primary);letter-spacing:3px;margin:16px 0;}.success-card p{color:var(--gray-medium);margin-bottom:8px;}</style></head>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><base href="/HkHotels.Front/"><title>Confirmación - HK Hotels</title><link rel="stylesheet" href="css/styles.css">
+<style>.success-page{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 20px}.success-card{background:white;border-radius:16px;padding:60px 40px;max-width:500px;box-shadow:0 20px 40px rgba(0,0,0,0.1)}.success-card .icon{font-size:80px;margin-bottom:24px}.success-card h1{color:var(--black-soft);margin-bottom:12px}.success-card .codigo{font-size:32px;font-weight:800;color:var(--gold-primary);letter-spacing:3px;margin:16px 0}.success-card p{color:var(--gray-medium);margin-bottom:8px}</style></head>
 <body>
-<header class="header" id="header"><nav class="navbar"><a href="/" class="logo"><span class="logo-text">HK<span>Hotels</span></span></a>
-<div class="nav-links" id="navLinks"><a href="/">Inicio</a><a href="/habitaciones.html">Habitaciones</a><a href="/reservas/formulario.html">Reservar</a><a href="/reservas/consultar.html">Consultar</a></div>
+<header class="header" id="header"><nav class="navbar"><a href="." class="logo"><span class="logo-text">HK<span>Hotels</span></span></a>
+<div class="nav-links" id="navLinks"><a href=".">Inicio</a><a href="habitaciones.html">Habitaciones</a><a href="reservas/formulario.html">Reservar</a><a href="reservas/consultar.html">Consultar</a></div>
 <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div></nav></header>
-<div class="success-page">
-<div class="success-card">
-<div class="icon">✅</div>
-<h1>¡Reserva Confirmada!</h1>
-<p>Tu código de reserva es:</p>
-<p class="codigo" id="codigo">HK-00000</p>
-<p>Te hemos enviado un email con todos los detalles.</p>
-<p style="margin-top:16px;">Presenta tu código en recepción al llegar al hotel.</p>
-<a href="/" class="btn btn-gold" style="margin-top:24px;">Volver al Inicio</a>
-</div></div>
+<div class="success-page"><div class="success-card"><div class="icon">✅</div><h1>¡Reserva Confirmada!</h1><p>Tu código de reserva es:</p><p class="codigo" id="codigo">HK-00000</p><p>Te hemos enviado un email con los detalles.</p><p style="margin-top:16px;">Presenta tu código en recepción.</p><a href="." class="btn btn-gold" style="margin-top:24px;">Volver al Inicio</a></div></div>
 <footer class="footer"><div class="footer-content"><div class="footer-col"><span class="logo-text" style="font-size:24px;">HK<span>Hotels</span></span></div>
 <div class="footer-col"><h4>Contacto</h4><p>📞 +34 971 123 456</p></div></div><div class="footer-bottom"><p>&copy; 2026 HK Hotels.</p></div></footer>
 <script>
-const params=new URLSearchParams(window.location.search);
-if(params.get('codigo')) document.getElementById('codigo').textContent=params.get('codigo');
 document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('active'));
 window.addEventListener('scroll',()=>document.getElementById('header').classList.toggle('scrolled',window.scrollY>50));
+const p=new URLSearchParams(window.location.search);if(p.get('codigo'))document.getElementById('codigo').textContent=p.get('codigo');
 </script></body></html>

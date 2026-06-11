@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/HkHotels.Front/">
     <title>HK Hotels - Lujo y Confort en Ibiza</title>
     <meta name="description" content="HK Hotels ofrece las mejores habitaciones de lujo en Ibiza. Reserva tu estancia con nosotros y disfruta de una experiencia inolvidable.">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 </head>
 <body>
     <!-- HEADER -->
     <header class="header" id="header">
         <nav class="navbar">
-            <a href="/" class="logo">
+            <a href="." class="logo">
                 <span class="logo-text">HK<span>Hotels</span></span>
             </a>
             <div class="nav-links" id="navLinks">
-                <a href="/" class="active">Inicio</a>
-                <a href="/habitaciones.html">Habitaciones</a>
-                <a href="/servicios.html">Servicios</a>
-                <a href="/galeria.html">Galería</a>
-                <a href="/contacto.html">Contacto</a>
-                <a href="/reservas/formulario.html" class="btn btn-gold btn-sm">Reservar</a>
+                <a href="." class="active">Inicio</a>
+                <a href="habitaciones.html">Habitaciones</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="galeria.html">Galería</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="reservas/formulario.html" class="btn btn-gold btn-sm">Reservar</a>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -46,8 +47,8 @@
                 servicio excepcional y vistas inolvidables al Mediterráneo.
             </p>
             <div class="hero-buttons fade-in fade-in-delay-3">
-                <a href="/habitaciones.html" class="btn btn-gold">Ver Habitaciones</a>
-                <a href="/reservas/formulario.html" class="btn btn-outline">Reservar Ahora</a>
+                <a href="habitaciones.html" class="btn btn-gold">Ver Habitaciones</a>
+                <a href="reservas/formulario.html" class="btn btn-outline">Reservar Ahora</a>
             </div>
         </div>
     </section>
@@ -64,7 +65,7 @@
             <!-- Las habitaciones se cargarán dinámicamente desde la API -->
         </div>
         <div style="text-align: center; margin-top: 40px;">
-            <a href="/habitaciones.html" class="btn btn-outline">Ver Todas las Habitaciones</a>
+            <a href="habitaciones.html" class="btn btn-outline">Ver Todas las Habitaciones</a>
         </div>
     </section>
 
@@ -80,7 +81,7 @@
             <!-- Los servicios se cargarán dinámicamente desde la API -->
         </div>
         <div style="text-align: center; margin-top: 40px;">
-            <a href="/servicios.html" class="btn btn-outline">Ver Todos los Servicios</a>
+            <a href="servicios.html" class="btn btn-outline">Ver Todos los Servicios</a>
         </div>
     </section>
 
@@ -180,18 +181,18 @@
             </div>
             <div class="footer-col">
                 <h4>Enlaces Rápidos</h4>
-                <a href="/habitaciones.html">Habitaciones</a><br>
-                <a href="/servicios.html">Servicios</a><br>
-                <a href="/galeria.html">Galería</a><br>
-                <a href="/contacto.html">Contacto</a><br>
-                <a href="/politicas.html">Políticas</a>
+                <a href="habitaciones.html">Habitaciones</a><br>
+                <a href="servicios.html">Servicios</a><br>
+                <a href="galeria.html">Galería</a><br>
+                <a href="contacto.html">Contacto</a><br>
+                <a href="politicas.html">Políticas</a>
             </div>
             <div class="footer-col">
                 <h4>Reservas</h4>
-                <a href="/reservas/formulario.html">Reservar Ahora</a><br>
-                <a href="/reservas/consultar.html">Consultar Reserva</a><br>
-                <a href="/cliente/mis-reservas.html">Mis Reservas</a><br>
-                <a href="/admin/login.html">Admin</a>
+                <a href="reservas/formulario.html">Reservar Ahora</a><br>
+                <a href="reservas/consultar.html">Consultar Reserva</a><br>
+                <a href="cliente/mis-reservas.html">Mis Reservas</a><br>
+                <a href="admin/login.html">Admin</a>
             </div>
             <div class="footer-col">
                 <h4>Contacto</h4>
@@ -207,20 +208,17 @@
         </div>
     </footer>
 
-    <script src="/js/api.js"></script>
-    <script src="/js/disponibilidad.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/disponibilidad.js"></script>
     <script>
-        // Menú hamburguesa
         document.getElementById('hamburger').addEventListener('click', () => {
             document.getElementById('navLinks').classList.toggle('active');
         });
 
-        // Header scroll
         window.addEventListener('scroll', () => {
             document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Cargar habitaciones destacadas
         async function cargarHabitaciones() {
             try {
                 const data = await api.getHabitaciones();
@@ -239,13 +237,12 @@
                                 <div class="amenities">
                                     ${(h.amenities || []).slice(0, 4).map(a => `<span>${a}</span>`).join('')}
                                 </div>
-                                <a href="/habitacion_detalle.html?id=${h.id}" class="btn btn-outline" style="width:100%">Ver Detalle</a>
+                                <a href="habitacion_detalle.html?id=${h.id}" class="btn btn-outline" style="width:100%">Ver Detalle</a>
                             </div>
                         </div>
                     `).join('');
                 }
             } catch (error) {
-                console.error('Error cargando habitaciones:', error);
                 document.getElementById('rooms-container').innerHTML = `
                     <div style="text-align:center; grid-column: 1/-1; padding: 40px;">
                         <p>Error al cargar habitaciones. Asegúrate de que el backend esté funcionando.</p>
@@ -254,13 +251,11 @@
             }
         }
 
-        // Cargar servicios destacados
         async function cargarServicios() {
             try {
                 const data = await api.getServicios();
                 if (data.success) {
                     const container = document.getElementById('services-container');
-                    const icons = ['spa', 'restaurant', 'car', 'food', 'boat'];
                     container.innerHTML = data.data.map((s, i) => `
                         <div class="service-card fade-in">
                             <div class="service-icon">${getIcon(i)}</div>
@@ -280,7 +275,6 @@
             return icons[index % icons.length];
         }
 
-        // Cargar habitaciones en selector de disponibilidad
         async function cargarSelectorHabitaciones() {
             try {
                 const data = await api.getHabitaciones();
@@ -298,7 +292,6 @@
             }
         }
 
-        // Inicializar
         cargarHabitaciones();
         cargarServicios();
         cargarSelectorHabitaciones();
