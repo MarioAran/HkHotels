@@ -2,7 +2,7 @@
 <style>.admin-layout{display:flex}.admin-sidebar{width:260px;background:var(--black-soft);padding:24px;position:fixed;top:0;left:0;height:100vh}.admin-sidebar .logo-text{font-size:22px;display:block;margin-bottom:32px}.admin-sidebar nav a{display:block;color:rgba(255,255,255,0.7);padding:12px 16px;border-radius:8px;margin-bottom:4px;font-size:14px}.admin-sidebar nav a:hover,.admin-sidebar nav a.active{background:rgba(198,164,63,0.15);color:var(--gold-primary)}.admin-main{margin-left:260px;flex:1;padding:32px;background:var(--ivory)}.form-card{background:white;border-radius:12px;padding:32px;max-width:600px;box-shadow:0 4px 6px rgba(0,0,0,0.1)}.form-card .form-group{margin-bottom:16px}.form-card label{display:block;font-size:13px;font-weight:600;margin-bottom:4px}.form-card input,.form-card textarea{width:100%;padding:10px 14px;border:2px solid #eee;border-radius:8px;font-size:14px;color:var(--gray-text)}</style></head>
 <body><div class="admin-layout"><aside class="admin-sidebar">
 <span class="logo-text">HK<span>Hotels</span></span>
-<nav><a href="../dashboard.html">📊 Dashboard</a><a href="../habitaciones/listar.html">🏨 Habitaciones</a><a href="../reservas/listar.html">📋 Reservas</a><a href="listar.html" class="active">🛎️ Servicios</a><a href="../.." style="margin-top:32px;border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;">← Ver Sitio</a><a href="#" id="btn-cerrar-sesion" style="color:#dc3545;">🚪 Cerrar Sesión</a></nav></aside>
+<nav><a href="admin/dashboard.html">📊 Dashboard</a><a href="admin/habitaciones/listar.html">🏨 Habitaciones</a><a href="admin/reservas/listar.html">📋 Reservas</a><a href="admin/servicios/listar.html" class="active">🛎️ Servicios</a><a href="." style="margin-top:32px;border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;">← Ver Sitio</a><a href="#" id="btn-cerrar-sesion" style="color:#dc3545;">🚪 Cerrar Sesión</a></nav></aside>
 <main class="admin-main"><h1 style="margin-bottom:24px;">Crear Servicio</h1>
 <div class="form-card"><form id="form-crear">
 <div class="form-group"><label>Nombre</label><input type="text" id="nombre" required></div>
@@ -11,7 +11,7 @@
 <div class="form-group"><label>Icono</label><input type="text" id="icono" placeholder="spa-icon"></div>
 <button type="submit" class="btn btn-gold">Crear Servicio</button>
 </form></div></main></div>
-<script src="../../js/api.js"></script>
+<script src="js/api.js"></script>
 <script>
 const token=localStorage.getItem('hk_hotel_token');if(!token)location.href='../login.html';
 document.getElementById('btn-cerrar-sesion').addEventListener('click',e=>{e.preventDefault();localStorage.clear();location.href='../login.html';});

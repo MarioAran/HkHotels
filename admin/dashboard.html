@@ -5,11 +5,11 @@
 <aside class="admin-sidebar">
 <span class="logo-text">HK<span>Hotels</span></span>
 <nav>
-<a href="dashboard.html" class="active">📊 Dashboard</a>
-<a href="habitaciones/listar.html">🏨 Habitaciones</a>
-<a href="reservas/listar.html">📋 Reservas</a>
-<a href="servicios/listar.html">🛎️ Servicios</a>
-<a href=".." style="margin-top:32px;border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;">← Ver Sitio</a>
+<a href="admin/dashboard.html" class="active">📊 Dashboard</a>
+<a href="admin/habitaciones/listar.html">🏨 Habitaciones</a>
+<a href="admin/reservas/listar.html">📋 Reservas</a>
+<a href="admin/servicios/listar.html">🛎️ Servicios</a>
+<a href="." style="margin-top:32px;border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;">← Ver Sitio</a>
 <a href="#" id="btn-cerrar-sesion" style="color:#dc3545;">🚪 Cerrar Sesión</a>
 </nav></aside>
 <main class="admin-main">
@@ -24,7 +24,7 @@
 <h3 style="margin-bottom:16px;">Últimas Reservas</h3><table style="width:100%;border-collapse:collapse;">
 <thead><tr><th>Código</th><th>Cliente</th><th>Habitación</th><th>Fechas</th><th>Total</th><th>Estado</th></tr></thead>
 <tbody id="reservas-table-body"><tr><td colspan="6" style="text-align:center;color:var(--gray-medium);">Cargando...</td></tr></tbody></table></div></main></div>
-<script src="../js/api.js"></script>
+<script src="js/api.js"></script>
 <script>
 const user=JSON.parse(localStorage.getItem('hk_hotel_user')||'{}');const token=localStorage.getItem('hk_hotel_token');if(!token)window.location.href='login.html';
 document.getElementById('user-info').textContent='👋 '+(user.nombre_completo||user.username);

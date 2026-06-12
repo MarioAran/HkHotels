@@ -4,25 +4,25 @@
 <aside class="admin-sidebar">
 <span class="logo-text">HK<span>Hotels</span></span>
 <nav>
-<a href="../dashboard.html">📊 Dashboard</a>
-<a href="listar.html" class="active">🏨 Habitaciones</a>
-<a href="../reservas/listar.html">📋 Reservas</a>
-<a href="../servicios/listar.html">🛎️ Servicios</a>
-<a href="../.." style="margin-top:32px;border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;">← Ver Sitio</a>
+<a href="admin/dashboard.html">📊 Dashboard</a>
+<a href="admin/habitaciones/listar.html" class="active">🏨 Habitaciones</a>
+<a href="admin/reservas/listar.html">📋 Reservas</a>
+<a href="admin/servicios/listar.html">🛎️ Servicios</a>
+<a href="." style="margin-top:32px;border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;">← Ver Sitio</a>
 <a href="#" id="btn-cerrar-sesion" style="color:#dc3545;">🚪 Cerrar Sesión</a>
 </nav></aside>
 <main class="admin-main">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
 <h1 style="font-size:24px;color:var(--black-soft);">Habitaciones</h1>
-<a href="crear.html" class="btn btn-gold btn-sm">+ Nueva</a></div>
+<a href="admin/habitaciones/crear.html" class="btn btn-gold btn-sm">+ Nueva</a></div>
 <div style="background:white;border-radius:12px;padding:24px;box-shadow:0 4px 6px rgba(0,0,0,0.1);overflow-x:auto;">
 <table style="width:100%;border-collapse:collapse;"><thead><tr><th>ID</th><th>Nombre</th><th>Precio/noche</th><th>Máx.</th><th>Activa</th><th>Acciones</th></tr></thead>
 <tbody id="habitaciones-body"></tbody></table></div></main></div>
-<script src="../../js/api.js"></script>
+<script src="js/api.js"></script>
 <script>
 const token=localStorage.getItem('hk_hotel_token');if(!token)location.href='../login.html';
 document.getElementById('btn-cerrar-sesion').addEventListener('click',e=>{e.preventDefault();localStorage.clear();location.href='../login.html';});
-async function cargar(){try{const d=await api.getHabitacionesAdmin(token);if(d.success){document.getElementById('habitaciones-body').innerHTML=d.data.map(h=>`<tr><td>${h.id}</td><td><strong>${h.nombre}</strong></td><td>$${h.precio_noche}</td><td>${h.max_personas}</td><td>${h.activa?'✅':'❌'}</td><td><a href="editar.html?id=${h.id}" class="btn btn-sm btn-outline" style="padding:6px 12px;font-size:12px;">✏️</a> <button onclick="eliminar(${h.id})" class="btn btn-sm btn-dark" style="padding:6px 12px;font-size:12px;background:#dc3545;">🗑️</button></td></tr>`).join('');}}catch(e){document.getElementById('habitaciones-body').innerHTML='<tr><td colspan="6" style="text-align:center;color:red;">Error</td></tr>';}}
+async function cargar(){try{const d=await api.getHabitacionesAdmin(token);if(d.success){document.getElementById('habitaciones-body').innerHTML=d.data.map(h=>`<tr><td>${h.id}</td><td><strong>${h.nombre}</strong></td><td>$${h.precio_noche}</td><td>${h.max_personas}</td><td>${h.activa?'✅':'❌'}</td><td><a href="admin/habitaciones/editar.html?id=${h.id}" class="btn btn-sm btn-outline" style="padding:6px 12px;font-size:12px;">✏️</a> <button onclick="eliminar(${h.id})" class="btn btn-sm btn-dark" style="padding:6px 12px;font-size:12px;background:#dc3545;">🗑️</button></td></tr>`).join('');}}catch(e){document.getElementById('habitaciones-body').innerHTML='<tr><td colspan="6" style="text-align:center;color:red;">Error</td></tr>';}}
 async function eliminar(id){if(!confirm('¿Desactivar?'))return;try{await api.eliminarHabitacion(id,token);cargar()}catch(e){alert('Error')}}
 cargar();
 </script></body></html>
