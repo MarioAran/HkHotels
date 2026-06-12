@@ -66,6 +66,13 @@ class HKApi {
         return this.request(url);
     }
 
+    async cancelarReserva(id, email) {
+        return this.request(`/reservas/${id}/cancelar`, {
+            method: 'POST',
+            body: JSON.stringify({ email })
+        });
+    }
+
     // ============ ENDPOINTS DE ADMIN (requieren token) ============
 
     async login(username, password) {
