@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: hk-hotels
+  labels:
+    app: hk-hotels
+    environment: production

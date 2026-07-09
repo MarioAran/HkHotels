@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hk-hotels-config
+  namespace: hk-hotels
+  labels:
+    app: hk-hotels
+data:
+  # URL de la API para el frontend
+  API_URL: "https://api.hk-hotels.com/api"
+  # Para desarrollo interno en el cluster:
+  # API_URL: "http://hk-hotels-backend:5000/api"

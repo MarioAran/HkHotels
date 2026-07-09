@@ -14,7 +14,8 @@
 <button type="submit" class="btn btn-gold">Guardar</button>
 <a href="admin/habitaciones/listar.html" class="btn btn-outline" style="margin-left:10px;">Cancelar</a>
 </form></div></main></div>
-<script src="js/api.js"></script>
+<script src="js/config.js"></script>
+    <script src="js/api.js"></script>
 <script>
 const token=localStorage.getItem('hk_hotel_token');if(!token)location.href='../login.html';
 document.getElementById('btn-cerrar-sesion').addEventListener('click',e=>{e.preventDefault();localStorage.clear();location.href='../login.html';});

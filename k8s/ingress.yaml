@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hk-hotels-ingress
+  namespace: hk-hotels
+  labels:
+    app: hk-hotels
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "8m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
+    nginx.ingress.kubernetes.io/limit-rps: "100"
+    nginx.ingress.kubernetes.io/limit-burst: "150"
+spec:
+  tls:
+    - hosts:
+        - hk-hotels.com  # CAMBIAR por tu dominio real
+      secretName: hk-hotels-tls
+  rules:
+    - host: hk-hotels.com  # CAMBIAR por tu dominio real
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hk-hotels-frontend
+                port:
+                  number: 80
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: hk-hotels-backend
+                port:
+                  number: 5000

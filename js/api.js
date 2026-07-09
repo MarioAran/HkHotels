@@ -5,9 +5,10 @@
  */
 class HKApi {
     constructor() {
-        // 🔥 CAMBIAR ESTA URL DESPUÉS DEL DEPLOY EN RENDER
-        this.baseUrl = 'https://hkhotels-backend.onrender.com/api';
-        // Para pruebas locales: 'http://localhost:5000/api'
+        // Usar la URL desde la configuración (config.js), con fallback
+        this.baseUrl = (window.HK_CONFIG && window.HK_CONFIG.API_URL) 
+            ? window.HK_CONFIG.API_URL 
+            : 'https://hkhotels-backend.onrender.com/api';
     }
 
     async request(endpoint, options = {}) {

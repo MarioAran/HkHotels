@@ -11,7 +11,8 @@
 <p class="error-msg" id="error-msg">Credenciales inválidas</p></form>
 <p style="text-align:center;margin-top:24px;font-size:13px;color:var(--gray-medium);"><a href="." style="color:var(--gold-primary);">← Volver al inicio</a></p>
 </div></div>
-<script src="js/api.js"></script>
+<script src="js/config.js"></script>
+    <script src="js/api.js"></script>
 <script>
 document.getElementById('login-form').addEventListener('submit',async e=>{e.preventDefault();const un=document.getElementById('username').value;const pw=document.getElementById('password').value;const btn=e.target.querySelector('button');btn.textContent='Ingresando...';btn.disabled=true;document.getElementById('error-msg').style.display='none';try{const r=await api.login(un,pw);if(r.success){localStorage.setItem('hk_hotel_token',r.data.token);localStorage.setItem('hk_hotel_user',JSON.stringify(r.data.usuario));window.location.href='admin/dashboard.html'}else{document.getElementById('error-msg').textContent=r.message||'Credenciales inválidas';document.getElementById('error-msg').style.display='block'}}catch(error){document.getElementById('error-msg').textContent='Error de conexión';document.getElementById('error-msg').style.display='block'}finally{btn.textContent='Ingresar';btn.disabled=false}});
 </script></body></html>
