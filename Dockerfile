@@ -3,11 +3,18 @@
 # ============================================
 
 # --- Stage 1: Build ---
-FROM nginx:alpine AS production
+# --- Stage 1: Build ---
+FROM ghcr.io/marioaran/python-base:3.12-slim
+
+# Instalar Nginx
+RUN apt-get update && \
+    apt-get install -y nginx wget && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Eliminar configuración por defecto de Nginx
 RUN rm -rf /usr/share/nginx/html/* && \
-    rm -rf /etc/nginx/conf.d/default.conf
+    rm -rf /etc/nginx/sites-enabled/default
 
 # Copiar los archivos estáticos del frontend
 COPY . /usr/share/nginx/html
@@ -22,4 +29,5 @@ EXPOSE 80
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD wget -qO- http://localhost:80/ || exit 1
 
+# Iniciar Nginx en primer plano
 CMD ["nginx", "-g", "daemon off;"]
